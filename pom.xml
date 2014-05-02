@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>c24-io-samples</groupId>
+    <artifactId>c24-sdo-gettingstarted</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+
+    <repositories>
+        <repository>
+            <id>c24-nexus</id>
+            <name>C24 Nexus</name>
+            <url>http://repo.c24io.net/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>c24-nexus</id>
+            <name>C24 Nexus</name>
+            <url>http://repo.c24io.net/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>biz.c24.io</groupId>
+            <artifactId>c24-io-api</artifactId>
+            <version>4.6.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>biz.c24.io.maven</groupId>
+                <artifactId>c24-maven-plugin</artifactId>
+                <version>4.5.0</version>
+                <executions>
+                    <execution>
+                        <id>c24-model-deploy</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <session>
+                                <deploy>
+                                    <generateMainMethods>false</generateMainMethods>
+                                    <toDir>target/generated-sources/src/main/java</toDir>
+                                    <deployEnvironment>false</deployEnvironment>
+                                    <deployAsSDO>true</deployAsSDO>
+                                    <fileSet>
+                                        <directory>${basedir}/src/main/C24</directory>
+                                        <includes>
+                                            <name>**/*.dod</name>
+                                            <name>**/*.tfd</name>
+                                        </includes>
+                                    </fileSet>
+                                </deploy>
+                            </session>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>biz.c24.io</groupId>
+                        <artifactId>c24-io-api</artifactId>
+                        <version>4.6.0-SNAPSHOT</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>biz.c24.io</groupId>
+                        <artifactId>c24-io-studio</artifactId>
+                        <version>4.6.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomersFile xmlns="http://www.c24.biz/io/GettingStarted/Customer">
+    <Customer>
+        <CustomerNumber>100018</CustomerNumber>
+        <CustomerAcronym>OTWIST</CustomerAcronym>
+        <Address>
+            <AddressLine>Flat 135A</AddressLine>
+            <AddressLine>Wapping High Street</AddressLine>
+            <AddressLine>London</AddressLine>
+            <AddressLine>E1 4TY</AddressLine>
+            <AddressLine>UK</AddressLine>
+        </Address>
+        <PostZipCode>E1 4TY</PostZipCode>
+        <TelephoneNumber>+44 207 555 1234</TelephoneNumber>
+        <EmailAddress>oliver.twist@c24.biz</EmailAddress>
+        <BIC></BIC>
+        <FaxNumber>+44 207 555 1235</FaxNumber>
+        <TelexNumber></TelexNumber>
+        <CountryOfResidence>GB</CountryOfResidence>
+        <FedwireCode></FedwireCode>
+        <ChipsParticipantCode></ChipsParticipantCode>
+        <ChipsUID></ChipsUID>
+        <SortCode>602034</SortCode>
+        <BankleitzhalCode></BankleitzhalCode>
+    </Customer>
+    <Customer>
+        <CustomerNumber>100024</CustomerNumber>
+        <CustomerAcronym>UHEEP</CustomerAcronym>
+        <Address>
+            <AddressLine>30</AddressLine>
+            <AddressLine>Borough High Street</AddressLine>
+            <AddressLine>London</AddressLine>
+            <AddressLine>SE1 1XU</AddressLine>
+            <AddressLine>UK</AddressLine>
+        </Address>
+        <PostZipCode>SE1 1XU</PostZipCode>
+        <TelephoneNumber>+44 207 555 7655</TelephoneNumber>
+        <EmailAddress>uriah.heep@c24.biz</EmailAddress>
+        <BIC></BIC>
+        <FaxNumber>+44 207 555 7656</FaxNumber>
+        <TelexNumber></TelexNumber>
+        <CountryOfResidence>US</CountryOfResidence>
+        <FedwireCode></FedwireCode>
+        <ChipsParticipantCode></ChipsParticipantCode>
+        <ChipsUID></ChipsUID>
+        <SortCode>504327</SortCode>
+        <BankleitzhalCode></BankleitzhalCode>
+    </Customer>
+    <Customer>
+        <CustomerNumber>100032</CustomerNumber>
+        <CustomerAcronym>MRSCRROGE</CustomerAcronym>
+        <Address>
+            <AddressLine>325</AddressLine>
+            <AddressLine>Kennington Park Lane</AddressLine>
+            <AddressLine>London</AddressLine>
+            <AddressLine>SE1 8GF</AddressLine>
+            <AddressLine>UK</AddressLine>
+        </Address>
+        <PostZipCode>SE1 8GF</PostZipCode>
+        <TelephoneNumber>+44 207 555 3452</TelephoneNumber>
+        <EmailAddress>mr.scrooge@c24.biz</EmailAddress>
+        <BIC></BIC>
+        <FaxNumber>+44 207 555 3453</FaxNumber>
+        <TelexNumber></TelexNumber>
+        <CountryOfResidence>US</CountryOfResidence>
+        <FedwireCode></FedwireCode>
+        <ChipsParticipantCode></ChipsParticipantCode>
+        <ChipsUID></ChipsUID>
+        <SortCode>301024</SortCode>
+        <BankleitzhalCode></BankleitzhalCode>
+    </Customer>
+    <Customer>
+        <CustomerNumber>100048</CustomerNumber>
+        <CustomerAcronym>CDICKENS</CustomerAcronym>
+        <Address>
+            <AddressLine>69</AddressLine>
+            <AddressLine>Westferry Road</AddressLine>
+            <AddressLine>London</AddressLine>
+            <AddressLine>E14 9PP</AddressLine>
+            <AddressLine>UK</AddressLine>
+        </Address>
+        <PostZipCode>E14 9PP</PostZipCode>
+        <TelephoneNumber>+44 208 555 0863</TelephoneNumber>
+        <EmailAddress>charles.dickens@c24.biz</EmailAddress>
+        <BIC></BIC>
+        <FaxNumber>+44 207 555 0864</FaxNumber>
+        <TelexNumber></TelexNumber>
+        <CountryOfResidence>DE</CountryOfResidence>
+        <FedwireCode></FedwireCode>
+        <ChipsParticipantCode></ChipsParticipantCode>
+        <ChipsUID></ChipsUID>
+        <SortCode>302244</SortCode>
+        <BankleitzhalCode></BankleitzhalCode>
+    </Customer>
+</CustomersFile>

@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<dataModel IOversion="3.1.0" attributeFormDefault="Unqualified" elementFormDefault="Qualified" encoding="UTF-8" encrypted="false" hibernateIDGeneratorMethodDefault="native" inputMask="XML" outputMask="XML" targetNamespace="http://www.c24.biz/io/GettingStarted/Customer" name="Customers.dod" version="0.0.10">
+  <type>
+    <atomicSimpleType baseType="#string" name="Customer Number">
+      <facet facetType="min_length">
+        <value>1</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>6</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Customer Acronym">
+      <facet facetType="min_length">
+        <value>1</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>12</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Address Line">
+      <facet facetType="min_length">
+        <value>0</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>50</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <complexType abstract="false" byteAlignment="No Alignment" contentModel="Sequence" excludeFromDatabase="false" processAsBatch="false" specialisation="Generic complex" specifyStructure="true" name="Address">
+      <element identifier="false" max="5" min="5" typeRef="Address Line" name="Address Line">
+        <commonValues>
+          <value>London</value>
+          <value>UK</value>
+        </commonValues>
+      </element>
+    </complexType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Post Zip Code">
+      <facet facetType="min_length">
+        <value>6</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>8</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Telephone Number">
+      <facet facetType="min_length">
+        <value>1</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>20</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Email Address">
+      <facet facetType="min_length">
+        <value>3</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>50</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="BIC">
+      <facet facetType="min_length">
+        <value>0</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>11</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Fax Number">
+      <facet facetType="min_length">
+        <value>1</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>20</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Telex Number">
+      <facet facetType="min_length">
+        <value>0</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>20</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Country Of Residence">
+      <facet facetType="min_length">
+        <value>0</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>2</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Fedwire Code">
+      <facet facetType="min_length">
+        <value>0</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>9</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Chips Participant Code">
+      <facet facetType="min_length">
+        <value>0</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>4</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Chips UID">
+      <facet facetType="min_length">
+        <value>0</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>6</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Sort Code">
+      <facet facetType="min_length">
+        <value>0</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>6</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <atomicSimpleType baseType="#string" name="Bankleitzhal Code">
+      <facet facetType="min_length">
+        <value>0</value>
+      </facet>
+      <facet facetType="max_length">
+        <value>8</value>
+      </facet>
+    </atomicSimpleType>
+  </type>
+  <type>
+    <complexType abstract="false" byteAlignment="No Alignment" contentModel="Sequence" excludeFromDatabase="false" processAsBatch="false" specialisation="Generic complex" specifyStructure="true" name="Customer">
+      <facet facetType="terminator">
+        <value>0d0a</value>
+      </facet>
+      <element identifier="false" max="1" min="1" typeRef="Customer Number" name="Customer Number"></element>
+      <element identifier="false" max="1" min="1" typeRef="Customer Acronym" name="Customer Acronym"></element>
+      <element identifier="false" max="1" min="1" typeRef="Address" name="Address"></element>
+      <element identifier="false" max="1" min="1" typeRef="Post Zip Code" name="Post Zip Code"></element>
+      <element identifier="false" max="1" min="1" typeRef="Telephone Number" name="Telephone Number"></element>
+      <element identifier="false" max="1" min="1" typeRef="Email Address" name="Email Address"></element>
+      <element identifier="false" max="1" min="1" typeRef="BIC" name="BIC"></element>
+      <element identifier="false" max="1" min="1" typeRef="Fax Number" name="Fax Number"></element>
+      <element identifier="false" max="1" min="1" typeRef="Telex Number" name="Telex Number"></element>
+      <element identifier="false" max="1" min="1" typeRef="Country Of Residence" name="Country Of Residence"></element>
+      <element identifier="false" max="1" min="1" typeRef="Fedwire Code" name="Fedwire Code"></element>
+      <element identifier="false" max="1" min="1" typeRef="Chips Participant Code" name="Chips Participant Code"></element>
+      <element identifier="false" max="1" min="1" typeRef="Chips UID" name="Chips UID"></element>
+      <element identifier="false" max="1" min="1" typeRef="Sort Code" name="Sort Code"></element>
+      <element identifier="false" max="1" min="1" typeRef="Bankleitzhal Code" name="Bankleitzhal Code"></element>
+    </complexType>
+  </type>
+  <type>
+    <complexType abstract="false" byteAlignment="No Alignment" contentModel="Sequence" excludeFromDatabase="false" processAsBatch="false" specialisation="Generic complex" specifyStructure="true" name="Customers File">
+      <element identifier="false" max="-1" min="1" typeRef="Customer" name="Customer"></element>
+    </complexType>
+  </type>
+  <element identifier="false" max="1" min="1" typeRef="Customers File" name="Customers File"></element>
+  <namespace prefix="" uri="http://www.c24.biz/io/GettingStarted/Customer"></namespace>
+</dataModel>
