@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<dataModel IOversion="3.1.0" attributeFormDefault="Unqualified" elementFormDefault="Qualified" encoding="UTF-8" encrypted="false" hibernateIDGeneratorMethodDefault="native" inputMask="XML" outputMask="XML" targetNamespace="http://www.c24.biz/io/GettingStarted/Customer" name="Customers.dod" version="0.0.10">
+<dataModel IOversion="3.1.0" attributeFormDefault="Unqualified" elementFormDefault="Qualified" encoding="UTF-8" encrypted="false" hibernateIDGeneratorMethodDefault="native" inputMask="XML" outputMask="XML" targetNamespace="http://www.c24.biz/io/GettingStarted/Customer" name="Customers.dod" version="0.0.13">
   <type>
     <atomicSimpleType baseType="#string" name="Customer Number">
       <facet facetType="min_length">
@@ -18,6 +18,7 @@
       <facet facetType="max_length">
         <value>12</value>
       </facet>
+      <validationRuleRef ref="StartsWithCapitalLetter"></validationRuleRef>
     </atomicSimpleType>
   </type>
   <type>
@@ -48,6 +49,7 @@
       <facet facetType="max_length">
         <value>8</value>
       </facet>
+      <validationRuleRef ref="StartsWithCapitalLetter"></validationRuleRef>
     </atomicSimpleType>
   </type>
   <type>
@@ -108,6 +110,7 @@
       <facet facetType="max_length">
         <value>2</value>
       </facet>
+      <validationRuleRef ref="StartsWithCapitalLetter"></validationRuleRef>
     </atomicSimpleType>
   </type>
   <type>
@@ -188,5 +191,41 @@
     </complexType>
   </type>
   <element identifier="false" max="1" min="1" typeRef="Customers File" name="Customers File"></element>
+  <validationRule severity="Error" name="StartsWithCapitalLetter">
+    <code>
+/*
+ * object: is the Complex/Simple data object containing the actual data;
+ * component: is the Element/Attribute that defines object;
+ * context: is the Complex Data Object parent of object;
+ * manager: is the object responsible for validation.
+ *
+ * Example:
+ * Object element = object.getElement("dummyElement");
+ * if (element == null) {
+ *    manager.fireValidationEvent(new biz.c24.io.api.data.ValidationEvent(
+ *        object, component, context, biz.c24.io.api.ValidationResultEnum.FAILED_RULE_ERROR, "error message"));
+ *    return false;
+ * }
+*/
+
+if(object != null) {
+	if(object instanceof String) {
+		String str = (String) object;
+		if(str.length() &gt; 0 &amp;&amp; (str.charAt(0) &lt; 'A' || str.charAt(0) &gt; 'Z')) {
+			 manager.fireValidationEvent(new biz.c24.io.api.data.ValidationEvent(
+                    object, component, context, biz.c24.io.api.ValidationResultEnum.FAILED_RULE_ERROR, "First letter is not a captial"));
+                return false;
+		}
+	}
+}
+
+
+return true;</code>
+    <inputType modelRef="Customers.dod" typeRef="#any"></inputType>
+    <import>java.util.*</import>
+    <import>java.math.*</import>
+    <import>java.lang.*</import>
+    <import>java.text.*</import>
+  </validationRule>
   <namespace prefix="" uri="http://www.c24.biz/io/GettingStarted/Customer"></namespace>
 </dataModel>

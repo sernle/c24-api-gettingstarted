@@ -8,6 +8,11 @@
     <version>1.0-SNAPSHOT</version>
 
 
+    <properties>
+        <c24.io.api.version>4.6.0-SNAPSHOT</c24.io.api.version>    
+        <c24.io.studio.version>4.6.0-SNAPSHOT</c24.io.studio.version>   
+    </properties>
+
     <repositories>
         <repository>
             <id>c24-nexus</id>
@@ -28,7 +33,7 @@
         <dependency>
             <groupId>biz.c24.io</groupId>
             <artifactId>c24-io-api</artifactId>
-            <version>4.6.0-SNAPSHOT</version>
+            <version>${c24.io.api.version}</version>
         </dependency>
 
         <dependency>
@@ -82,12 +87,12 @@
                     <dependency>
                         <groupId>biz.c24.io</groupId>
                         <artifactId>c24-io-api</artifactId>
-                        <version>4.6.0-SNAPSHOT</version>
+                        <version>${c24.io.api.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>biz.c24.io</groupId>
                         <artifactId>c24-io-studio</artifactId>
-                        <version>4.6.0-SNAPSHOT</version>
+                        <version>${c24.io.studio.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
