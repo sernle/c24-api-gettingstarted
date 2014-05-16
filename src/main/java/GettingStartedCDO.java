@@ -17,7 +17,7 @@ public class GettingStartedCDO {
         // In our case it's CustomersFile.class
         // We want to read it in, from a file, where it is stored in its default format:
         
-        CustomersFile file = C24.parse(CustomersFile.class).from(new File("/Customers.txt"));
+        CustomersFile file = C24.parse(CustomersFile.class).from(new File("/Customers.xml"));
         
         // Before we go any further, let's check that the file was valid
         C24.validate(file);
@@ -44,7 +44,7 @@ public class GettingStartedCDO {
         // By default it will write in the same format that we read it in, however we can 
         // use alternative representations too:
         
-        C24.write(file).as(XML).to(System.out);
+        C24.write(file).as(JSON).to(System.out);
         
         
         
