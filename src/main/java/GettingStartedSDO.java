@@ -34,9 +34,11 @@ public class GettingStartedSDO {
         C24.validate(cdoFile);
         
         // Now we create an SDO version of the CDO:
-        // TODO Make a better API for this via the C24 class
         
-        biz.c24.io.gettingstarted.customer.sdo.CustomersFile sdoFile = (biz.c24.io.gettingstarted.customer.sdo.CustomersFile) new SdoSink().writeToSdo(cdoFile);
+        biz.c24.io.gettingstarted.customer.sdo.CustomersFile sdoFile = C24.toSdo(cdoFile);
+        
+        // We could have parsed to an SDO directly by using the SDO class in the call to C24.parse above
+        // however then we couldn't have performed validation
         
         
         // We can interrogate the parsed data in exactly the same way as
@@ -113,9 +115,8 @@ public class GettingStartedSDO {
         
         // SDOs are read-only however. If you want to modify them or write back out in the original textual format,
         // you need to go back to the corresponding CDO:
-        // TODO Improve the API for this
         
-        cdoFile = (CustomersFile) new SdoSource().readFromSdo(sdoFile);
+        cdoFile = C24.toCdo(sdoFile);
         
         // Now all the standard CDO features are available, such as modification, XPath queries, writing etc.
         
