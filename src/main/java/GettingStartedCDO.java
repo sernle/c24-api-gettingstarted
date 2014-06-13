@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import biz.c24.io.api.C24;
 import static biz.c24.io.api.C24.Format.*;
+import biz.c24.io.api.data.ValidationEvent;
 import biz.c24.io.api.data.ValidationException;
 import biz.c24.io.gettingstarted.customer.Customer;
 import biz.c24.io.gettingstarted.customer.CustomersFile;
@@ -47,6 +48,29 @@ public class GettingStartedCDO {
         C24.write(file).as(JSON).to(System.out);
         
         
+        // What would have happened above if our file was invalid?
+        // The model we're using requires certain fields to start with a capital letter, so let's introduce some violations:
+        file.getCustomer()[0].setCustomerAcronym("oTwist");
+        file.getCustomer()[1].setCountryOfResidence("us");
+        
+        try {
+            C24.validate(file);
+        } catch(ValidationException vEx) {
+            System.out.println("Message was invalid. Field " + vEx.getFieldName() + ": " + vEx.getReason() + " (" + vEx.getObject().toString() + ")");
+        }
+        
+        // We introduced 2 violations but the error only contained one - what happened?
+        // The validation above is fail-fast - it will throw an exception as soon as invalid data is found.
+        // If we want to fully validate the message we can use the following form:
+        
+        ValidationEvent[] failures = C24.validateFully(file);
+        if(failures != null && failures.length > 0) {
+            System.out.println("Message was invalid due to:");
+            for(ValidationEvent failure : failures) {
+                
+                System.out.println(failure.getLocation() + ": " + failure.getMessage() + " (" + failure.getObject().toString() + ")");
+            }
+        }
         
     }
 

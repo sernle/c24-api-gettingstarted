@@ -10,7 +10,6 @@ import biz.c24.io.api.presentation.SdoSink.SdoContext;
 import biz.c24.io.api.presentation.SdoSource;
 import biz.c24.io.api.presentation.sdo.SdoContextTextualWriter;
 import biz.c24.io.gettingstarted.customer.sdo.*;
-import biz.c24.io.gettingstarted.customer.CustomersFile;
 
 /**
  * A very simple getting-started guide for working with C24 SDOs.
@@ -26,7 +25,7 @@ public class GettingStartedSDO {
         
         File file = new File("/Customers.xml");
         
-        CustomersFile cdoFile = C24.parse(CustomersFile.class).from(file);
+        biz.c24.io.gettingstarted.customer.CustomersFile cdoFile = C24.parse(biz.c24.io.gettingstarted.customer.CustomersFile.class).from(file);
         
         // It is especially important to ensure that the CDO is valid before creating an SDO
         // SDOs are less tolerant to invalid messages than CDOs
@@ -35,11 +34,11 @@ public class GettingStartedSDO {
         
         // Now we create an SDO version of the CDO:
         
-        biz.c24.io.gettingstarted.customer.sdo.CustomersFile sdoFile = C24.toSdo(cdoFile);
+        CustomersFile sdoFile = C24.toSdo(cdoFile);
         
         // We could have parsed to an SDO directly by using the SDO class in the call to C24.parse above
-        // however then we couldn't have performed validation
-        
+        // however then we couldn't have performed validation so this is best suited for cases where we know our input is valid.
+        // CustomersFile sdoFile = C24.parse(CustomersFile.class).from(file);
         
         // We can interrogate the parsed data in exactly the same way as
         // you would with any POJO or CDO, for example:
@@ -110,19 +109,15 @@ public class GettingStartedSDO {
         
         SdoContextTextualWriter.writeTo(System.out, context);
         
+        // Like CDOs, you can write them out in multiple formats:
+        C24.write(sdoFile).as(JSON).to(System.out);
         
-
-        
-        // SDOs are read-only however. If you want to modify them or write back out in the original textual format,
-        // you need to go back to the corresponding CDO:
-        
+                
+        // SDOs are read-only however. If you want to modify them you need to go back to the corresponding CDO:       
         cdoFile = C24.toCdo(sdoFile);
         
         // Now all the standard CDO features are available, such as modification, XPath queries, writing etc.
-        
-        C24.write(cdoFile).as(JSON).to(System.out);
-        
-        
+       
         
     }
 
