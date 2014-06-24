@@ -5,9 +5,11 @@ import biz.c24.io.api.C24;
 import static biz.c24.io.api.C24.Format.*;
 import biz.c24.io.api.data.ValidationEvent;
 import biz.c24.io.api.data.ValidationException;
+import biz.c24.io.gettingstarted.contact.ContactDetailsFile;
 import biz.c24.io.gettingstarted.customer.Customer;
 import biz.c24.io.gettingstarted.customer.CustomersFile;
 import biz.c24.io.gettingstarted.customer.Address;
+import biz.c24.io.gettingstarted.transform.GenerateContactListTransform;
 
 
 public class GettingStartedCDO {
@@ -19,6 +21,9 @@ public class GettingStartedCDO {
         // We want to read it in, from a file, where it is stored in its default format:
         
         CustomersFile file = C24.parse(CustomersFile.class).from(new File("/Customers.xml"));
+        
+        // We could have overriden the default format by using the as(Format) method or
+        // default encoding by calling the using("Character set") method
         
         // Before we go any further, let's check that the file was valid
         C24.validate(file);
@@ -71,6 +76,22 @@ public class GettingStartedCDO {
                 System.out.println(failure.getLocation() + ": " + failure.getMessage() + " (" + failure.getObject().toString() + ")");
             }
         }
+        
+        // The simplest way to use your Transforms is:
+        GenerateContactListTransform xform = new GenerateContactListTransform();
+        
+        ContactDetailsFile cdFile = xform.transform(file);
+        
+        // The result of the transformation is also a CDO, so all the validation, transformation and marshaling code we've seen so far 
+        // works with it too:
+        
+        C24.write(cdFile).as(XML).to(System.out);
+        
+        // The transformation approach above only works for 1:1 transforms. For n:m transforms we need to use a more advanced form:
+        
+        cdFile = (ContactDetailsFile) xform.transform(new Object[][]{{file}})[0][0];
+ 
+        // The input and output arrays allow you to pass (and receive) more CDOs
         
     }
 

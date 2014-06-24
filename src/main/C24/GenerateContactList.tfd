@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<transform IOversion="3.1.0" encrypted="false" processingOrder="Outputs" readOnly="false" saveLayout="true" validateInputs="false" validateOutputs="false" targetNamespace="http://www.c24.biz/io/GettingStarted/Transform" name="GenerateContactList.tfd">
+  <input endID="0" modelRef="Customers.dod" path="" required="false" typeRef="Customers File"></input>
+  <contextPath contextRef="ContactDetails" endID="0" input="false" id="ContactDetailsO000"></contextPath>
+  <localTransformRef refId="Customer To ContactDetails_ContactDetailsO00000" x="200" y="200" id="ContactDetailsO00000"></localTransformRef>
+  <contextPath contextRef="Customer" endID="0" input="true" id="ContactDetailsO0000000"></contextPath>
+  <translation inputID="ContactDetailsO00000" inputPort="0" outputID="ContactDetailsO000" outputPort="0"></translation>
+  <translation inputID="ContactDetailsO0000000" inputPort="0" outputID="ContactDetailsO00000" outputPort="0"></translation>
+  <output endID="0" modelRef="ContactDetails.dod" path="" required="false" typeRef="ContactDetailsFile"></output>
+  <localTransform id="Customer To ContactDetails_ContactDetailsO00000">
+    <transform IOversion="3.1.0" encrypted="false" processingOrder="Outputs" readOnly="false" saveLayout="true" validateInputs="false" validateOutputs="false" name="Customer To ContactDetails">
+      <input endID="0" modelRef="Customers.dod" path="" required="false" typeRef="Customer"></input>
+      <contextPath contextRef="Customer Number" endID="0" input="true" id="customerNumberO00000"></contextPath>
+      <contextPath contextRef="Email Address" endID="0" input="true" id="EmailAddressO0000001"></contextPath>
+      <contextPath contextRef="EmailAddress" endID="0" input="false" id="EmailAddressO000"></contextPath>
+      <transformMethod name="IFEXISTS" type="#string" x="246" y="94" id="EmailAddressO00000"></transformMethod>
+      <constant constant="null" id="EmailAddressO0000002"></constant>
+      <contextPath contextRef="Telephone Number" endID="0" input="true" id="TelephoneNumberO0000002"></contextPath>
+      <contextPath contextRef="TelephoneNumber" endID="0" input="false" id="TelephoneNumberO000"></contextPath>
+      <transformMethod name="IFEXISTS" type="#string" x="300" y="224" id="TelephoneNumberO00000"></transformMethod>
+      <constant constant="null" id="TelephoneNumberO0000001"></constant>
+      <contextPath contextRef="@customerNumber" endID="0" input="false" id="customerNumberO000"></contextPath>
+      <translation inputID="EmailAddressO00000" inputPort="0" outputID="EmailAddressO000" outputPort="0"></translation>
+      <translation inputID="EmailAddressO0000001" inputPort="0" outputID="EmailAddressO00000" outputPort="0"></translation>
+      <translation inputID="EmailAddressO0000001" inputPort="0" outputID="EmailAddressO00000" outputPort="1"></translation>
+      <translation inputID="EmailAddressO0000002" inputPort="0" outputID="EmailAddressO00000" outputPort="2"></translation>
+      <translation inputID="TelephoneNumberO00000" inputPort="0" outputID="TelephoneNumberO000" outputPort="0"></translation>
+      <translation inputID="EmailAddressO0000001" inputPort="0" outputID="TelephoneNumberO00000" outputPort="0"></translation>
+      <translation inputID="TelephoneNumberO0000001" inputPort="0" outputID="TelephoneNumberO00000" outputPort="1"></translation>
+      <translation inputID="TelephoneNumberO0000002" inputPort="0" outputID="TelephoneNumberO00000" outputPort="2"></translation>
+      <translation inputID="customerNumberO00000" inputPort="0" outputID="customerNumberO000" outputPort="0"></translation>
+      <output endID="0" modelRef="ContactDetails.dod" path="" required="false" typeRef="#ContactDetailsFile/ContactDetails"></output>
+    </transform>
+  </localTransform>
+  <transformTestSuite></transformTestSuite>
+</transform>

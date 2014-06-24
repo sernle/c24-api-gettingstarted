@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<dataModel IOversion="3.1.0" attributeFormDefault="Unqualified" elementFormDefault="Qualified" encoding="UTF-8" encrypted="false" hibernateIDGeneratorMethodDefault="native" inputMask="XML" outputMask="XML" targetNamespace="http://www.c24.biz/io/GettingStarted/Customer" name="Customers.dod" version="0.0.13">
+<dataModel IOversion="3.1.0" attributeFormDefault="Unqualified" elementFormDefault="Qualified" encoding="UTF-8" encrypted="false" hibernateIDGeneratorMethodDefault="native" inputMask="XML" outputMask="XML" targetNamespace="http://www.c24.biz/io/GettingStarted/Customer" name="Customers.dod" version="0.0.14">
   <type>
     <atomicSimpleType baseType="#string" name="Customer Number">
       <facet facetType="min_length">
@@ -173,7 +173,7 @@
       <element identifier="false" max="1" min="1" typeRef="Address" name="Address"></element>
       <element identifier="false" max="1" min="1" typeRef="Post Zip Code" name="Post Zip Code"></element>
       <element identifier="false" max="1" min="1" typeRef="Telephone Number" name="Telephone Number"></element>
-      <element identifier="false" max="1" min="1" typeRef="Email Address" name="Email Address"></element>
+      <element identifier="false" max="1" min="0" typeRef="Email Address" name="Email Address"></element>
       <element identifier="false" max="1" min="1" typeRef="BIC" name="BIC"></element>
       <element identifier="false" max="1" min="1" typeRef="Fax Number" name="Fax Number"></element>
       <element identifier="false" max="1" min="1" typeRef="Telex Number" name="Telex Number"></element>

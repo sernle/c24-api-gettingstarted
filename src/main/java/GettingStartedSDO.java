@@ -7,13 +7,14 @@ import static biz.c24.io.api.C24.Format.*;
 import biz.c24.io.api.data.ValidationException;
 import biz.c24.io.api.presentation.SdoSink;
 import biz.c24.io.api.presentation.SdoSink.SdoContext;
-import biz.c24.io.api.presentation.SdoSource;
 import biz.c24.io.api.presentation.sdo.SdoContextTextualWriter;
 import biz.c24.io.gettingstarted.customer.sdo.*;
 
 /**
  * A very simple getting-started guide for working with C24 SDOs.
  * Please ensure you are familiar with the corresponding CDO guide before proceeding.
+ * 
+ * SDOs are a licensed feature of the C24-iO Enterprise Edition. 
  *
  */
 public class GettingStartedSDO {
@@ -38,7 +39,7 @@ public class GettingStartedSDO {
         
         // We could have parsed to an SDO directly by using the SDO class in the call to C24.parse above
         // however then we couldn't have performed validation so this is best suited for cases where we know our input is valid.
-        // CustomersFile sdoFile = C24.parse(CustomersFile.class).from(file);
+        sdoFile = C24.parse(CustomersFile.class).from(file);
         
         // We can interrogate the parsed data in exactly the same way as
         // you would with any POJO or CDO, for example:

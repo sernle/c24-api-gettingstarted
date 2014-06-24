@@ -48,7 +48,7 @@
     </Customer>
     <Customer>
         <CustomerNumber>100032</CustomerNumber>
-        <CustomerAcronym>MRSCRROGE</CustomerAcronym>
+        <CustomerAcronym>MRSCROOGE</CustomerAcronym>
         <Address>
             <AddressLine>325</AddressLine>
             <AddressLine>Kennington Park Lane</AddressLine>
@@ -58,7 +58,6 @@
         </Address>
         <PostZipCode>SE1 8GF</PostZipCode>
         <TelephoneNumber>+44 207 555 3452</TelephoneNumber>
-        <EmailAddress>mr.scrooge@c24.biz</EmailAddress>
         <BIC></BIC>
         <FaxNumber>+44 207 555 3453</FaxNumber>
         <TelexNumber></TelexNumber>

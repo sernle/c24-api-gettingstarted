@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<dataModel IOversion="3.1.0" attributeFormDefault="Unqualified" elementFormDefault="Qualified" encoding="UTF-8" encrypted="false" hibernateIDGeneratorMethodDefault="native" targetNamespace="http://www.c24.biz/io/GettingStarted/Contact" name="ContactDetails.dod" version="0.0.2">
+  <type>
+    <complexType abstract="false" byteAlignment="No Alignment" contentModel="Sequence" excludeFromDatabase="false" processAsBatch="false" specialisation="Generic complex" specifyStructure="true" name="ContactDetailsFile">
+      <element identifier="false" max="-1" min="1" name="ContactDetails">
+        <type>
+          <complexType abstract="false" byteAlignment="No Alignment" contentModel="Choice" excludeFromDatabase="false" processAsBatch="false" specialisation="Generic complex" specifyStructure="true" name="ContactDetails">
+            <element identifier="false" max="1" min="1" typeRef="#string" name="EmailAddress"></element>
+            <element identifier="false" max="1" min="1" typeRef="#string" name="TelephoneNumber"></element>
+            <attribute max="1" min="1" typeRef="#string" name="customerNumber"></attribute>
+          </complexType>
+        </type>
+      </element>
+    </complexType>
+  </type>
+</dataModel>
