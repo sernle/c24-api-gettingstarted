@@ -42,7 +42,7 @@ public class SdoUtils {
                 stream.println();
             }
             char c = (char) bytes[i];
-            stream.print((c < 'z' && c >= ' '? c : '.'));
+            stream.print((c <= 'z' && c >= ' '? c : '.'));
         }
         stream.println();
     }
