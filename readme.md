@@ -3,7 +3,7 @@
 
 Now that you've generated your models and Java classes from the iO Studio it's time to use them in your own projects. C24-iO provides a number of different APIs to cater for a variety of use cases. The fluent API presented here is the most intuitive of them and will be appropriate for most uses however please contact C24 if you'd like details on the other APIs.
 
-All the code and samples used in this section can be downloaded from URLHERE
+All the code and samples used in this section can be downloaded from https://github.com/C24-Technologies/c24-api-gettingstarted
 
 ## Getting Started
 
