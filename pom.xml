@@ -148,15 +148,21 @@
                                 <jvmArg>-Xms64m</jvmArg>
                                 <jvmArg>-Xmx1024m</jvmArg>
                             </jvmArgs>
+                            <launchers>
+                                <launcher>
+                                    <id>cdo</id>
+                                    <mainClass>scala.GettingStartedCDO</mainClass>
+                                </launcher>
+                                <launcher>
+                                    <id>sdo</id>
+                                    <mainClass>scala.GettingStartedSDO</mainClass>
+                                </launcher>
+                            </launchers>
                         </configuration>
                     </plugin>
-
                 </plugins>
-
             </build>
-
         </profile>
-
     </profiles>
 
 </project>
