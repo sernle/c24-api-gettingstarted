@@ -9,8 +9,8 @@
 
 
     <properties>
-        <c24.io.api.version>4.7.0-SNAPSHOT</c24.io.api.version>
-        <c24.io.studio.version>4.7.0-SNAPSHOT</c24.io.studio.version>
+        <c24.io.api.version>4.6.7</c24.io.api.version>
+        <c24.io.studio.version>4.6.2</c24.io.studio.version>
     </properties>
 
     <repositories>
@@ -19,6 +19,11 @@
             <name>C24 Nexus</name>
             <url>http://repo.c24io.net/nexus/content/groups/public</url>
         </repository>
+        <repository>
+            <id>java.net</id>
+            <name>java.net - Maven 2</name>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>
     </repositories>
 
     <pluginRepositories>
@@ -26,6 +31,11 @@
             <id>c24-nexus</id>
             <name>C24 Nexus</name>
             <url>http://repo.c24io.net/nexus/content/groups/public</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>java.net</id>
+            <name>java.net - Maven 2</name>
+            <url>http://download.java.net/maven/2/</url>
         </pluginRepository>
     </pluginRepositories>
 
