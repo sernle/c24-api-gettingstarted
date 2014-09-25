@@ -5,6 +5,8 @@ Now that you've generated your models and Java classes from the iO Studio it's t
 
 All the code and samples used in this section can be downloaded from https://github.com/C24-Technologies/c24-api-gettingstarted
 
+This document introduces also some of the new features included in the upcoming v4.7 of C24-iO. Please contact C24 if you have would like a demonstration of this functionality.
+
 ## Getting Started
 
 The Runtime APIs are included in the c24-io-api jar. You can either copy it (and its dependencies) from your iO Studio installation or use a dependency manager - for Maven the relevant sections are:
@@ -105,6 +107,8 @@ Pre-configured Sources can also be used directly with the `from(...)` method if 
     
     MyType obj = C24.parse(MyType.class).as(TolerantFIX).from(...);
     
+__Support for user-defined Formats requires iO 4.7 or above.__    
+    
 ### Validation
 
 The quickest way to determine if an object is valid is to use the fail-fast:
@@ -151,6 +155,8 @@ The `to(...)` method accepts Writers, OutputStreams and Files. Alternatively the
 Just as with the `C24.parse(...)` method, you can control the output format and encoding by using the `as(...)` and `using(...)` methods:
 
     String json = C24.write(file).as(JSON).using("UTF-8").toStr();
+    
+__The toStr() method requires iO 4.7 or above. In earlier releases you can use to(StringWriter) to marshal your object to a String.__ 
 
 ## SDOs
 
@@ -166,6 +172,8 @@ Marshaing SDOs is also the same as for CDOs and again the full syntax shown abov
 
     String json = C24.write(file).as(JSON).using("UTF-8").toStr();
     
+__The toStr() method requires iO 4.7 or above. In earlier releases you can use to(StringWriter) to marshal your object to a String__ 
+    
 Validation and transformation are not supported directly by SDOs so if you wish to use these in your process flow you should parse the CDO first and convert to an SDO when you need a compact, read-only version of your message.
 
 Converting between CDOs and SDOs is simple:
@@ -177,6 +185,7 @@ Converting between CDOs and SDOs is simple:
     cdoFile = C24.toCdo(sdoFile);
 
 ## Scala
+__The C24-iO Scala Library is available with iO v4.7.0 and above.__ 
 
 To build the Scala examples in the reference project using Maven, add -Pscala to the build line.
 
