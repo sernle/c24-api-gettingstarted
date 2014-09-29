@@ -5,7 +5,7 @@ Now that you've generated your models and Java classes from the iO Studio it's t
 
 All the code and samples used in this section can be downloaded from https://github.com/C24-Technologies/c24-api-gettingstarted
 
-This document introduces also some of the new features included in the upcoming v4.7 of C24-iO. Please contact C24 if you have would like a demonstration of this functionality.
+This document also introduces some of the new features included in the upcoming v4.7 of C24-iO. Please contact C24 if you have would like a demonstration of this functionality.
 
 ## Getting Started
 
