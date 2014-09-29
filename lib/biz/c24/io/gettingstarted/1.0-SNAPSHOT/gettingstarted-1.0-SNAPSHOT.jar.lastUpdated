@@ -1,0 +1,16 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Fri Jul 18 18:35:03 BST 2014
+http\://repository.mulesoft.org/snapshots/.error=
+http\://snapshots.repository.codehaus.org/.lastUpdated=1405704903281
+http\://repository.jboss.com/.error=
+http\://download.java.net/maven/2/.lastUpdated=1405704902445
+http\://repository.mulesoft.org/releases/.lastUpdated=1405704900394
+http\://download.java.net/maven/2/.error=
+http\://repository.mulesoft.org/releases/.error=
+http\://repository.mulesoft.org/snapshots/.lastUpdated=1405704900734
+http\://repository.codehaus.org/.lastUpdated=1405704900961
+http\://repo.c24io.net/nexus/content/groups/public/.lastUpdated=1405704902159
+http\://repository.jboss.com/.lastUpdated=1405704903052
+http\://repository.codehaus.org/.error=
+http\://snapshots.repository.codehaus.org/.error=
+http\://repo.c24io.net/nexus/content/groups/public/.error=

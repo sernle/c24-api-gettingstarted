@@ -14,6 +14,19 @@
     </properties>
 
     <repositories>
+        <!-- We include some generated jars - make them available to maven -->
+        <repository>
+            <id>lib</id>
+            <name>lib</name>
+            <releases>
+                <enabled>true</enabled>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <url>file://${project.basedir}/lib</url>
+        </repository>
         <repository>
             <id>c24-nexus</id>
             <name>C24 Nexus</name>
@@ -51,6 +64,12 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+
+        <dependency>
+            <groupId>biz.c24.io</groupId>
+            <artifactId>gettingstarted</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -63,49 +82,6 @@
                     <source>1.6</source>
                     <target>1.6</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>biz.c24.io.maven</groupId>
-                <artifactId>c24-maven-plugin</artifactId>
-                <version>4.5.0</version>
-                <executions>
-                    <execution>
-                        <id>c24-model-deploy</id>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <session>
-                                <deploy>
-                                    <generateMainMethods>false</generateMainMethods>
-                                    <toDir>target/generated-sources/src/main/java</toDir>
-                                    <deployEnvironment>false</deployEnvironment>
-                                    <deployAsSDO>true</deployAsSDO>
-                                    <fileSet>
-                                        <directory>${basedir}/src/main/C24</directory>
-                                        <includes>
-                                            <name>**/*.dod</name>
-                                            <name>**/*.tfd</name>
-                                        </includes>
-                                    </fileSet>
-                                </deploy>
-                            </session>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>biz.c24.io</groupId>
-                        <artifactId>c24-io-api</artifactId>
-                        <version>${c24.io.api.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>biz.c24.io</groupId>
-                        <artifactId>c24-io-studio</artifactId>
-                        <version>${c24.io.studio.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
