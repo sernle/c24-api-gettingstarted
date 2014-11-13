@@ -19,7 +19,7 @@ import java.util.List;
  * This class demonstrates some of the features that are available when deploying code with the Java 8 option.
  * It is expected that you are already familiar with GettingStartedCDO
  * Using a contrived example will highlight the useful features that are available if you deploy the code with the Java 8 option.
- * Note that the code was deployed with the C24 maven deploy task with the following property set - <cdoJavaVersion>JDK_8</cdoJavaVersion>
+ * Note that the code was deployed with the C24 maven deploy task with the following property set - <javaVersion>JDK_8</javaVersion>
  * You could also achieve the same by setting the property in C24 IO Studio
  * The features you get with the Java 8 option are:
  * 1. java.time types

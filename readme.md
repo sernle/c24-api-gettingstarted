@@ -238,10 +238,10 @@ To include it in your maven project add the following dependency:
         <version>${c24.io.api.version}</version>
     </dependency>
 
-To generate code with the Java 8 features you can select the Java8 Code deployer in the project profile.
+To generate code with the Java 8 features you can select the JDK_8 option in the project profile.
 Alternatively if you use the C24 maven deploy task set the following property:
 
-    <cdoJavaVersion>JDK_8</cdoJavaVersion>
+    <javaVersion>JDK_8</javaVersion>
 
 
 Deploying C24 code with the Java 8 option selected will result in the following behaviours:
