@@ -177,6 +177,7 @@
                                             <toDir>target/generated-sources/src/main/java</toDir>
                                             <deployEnvironment>false</deployEnvironment>
                                             <deployAsCDO>true</deployAsCDO>
+                                            <deployAsSDO>true</deployAsSDO>
                                             <javaVersion>JDK_8</javaVersion>
                                             <fileSet>
                                                 <directory>${basedir}/src/main/C24</directory>

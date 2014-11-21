@@ -1,5 +1,6 @@
 import biz.c24.io.api.C24;
 import biz.c24.io.api.data.ValidationException;
+import biz.c24.io.api.presentation.SdoSink;
 import biz.c24.io.gettingstarted.purchaseorder.CurrencyCodeJavaEnum;
 import biz.c24.io.gettingstarted.purchaseorder.Lineitem;
 import biz.c24.io.gettingstarted.purchaseorder.PurchaseorderDocumentRoot;
@@ -97,6 +98,14 @@ public class WorkingWithJava8Extensions {
         lineItems.get(0).setCurrencyEnum(CurrencyCodeJavaEnum.EUR);
         //setting the enum will also change the underlying property
         System.out.println("the currency for Line Item 1 has been changed to " + lineItems.get(0).getCurrency());
+
+        //we can also generate SDO objects using the JDK_8 option
+        //However we will need to use the java8.C24 class that knows how to handle these options
+        biz.c24.io.gettingstarted.purchaseorder.sdo.PurchaseorderLocal  sdoPO = biz.c24.io.api.java8.C24.toSdo(purchaseOrder);
+
+        //this will populate the same java.time properties as above
+        ZonedDateTime purchaseDateFromSdo = sdoPO.getPurchasedate();
+        System.out.println("The purchase date property is a java.time.ZonedDateTime instance: " + purchaseDateFromSdo.format(DateTimeFormatter.ISO_DATE_TIME));
 
     }
 
