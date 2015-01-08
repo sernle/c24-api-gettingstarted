@@ -85,6 +85,16 @@ It is possible to intercept the message before iO parses it by supplying an inst
     
     MyType obj = C24.parse(MyType.class).preprocess(new LineEndingCleaner()).from(...);
     
+An instance of `biz.c24.io.api.presentation.ParseListener` can also be used during parsing to intercept the parsing process:
+
+    ParseListener listener = ...;
+    
+    C24.parse(MyType.class).with(listener).from(...);
+    
+Please see the ParseListener Javadoc and the 'Process as Batch' documentation for further details on the ParseListener.
+
+__Support for the `with(listener)` grammar requires iO 4.6.10 or above. For earlier versions, please set the ParseListener on the Source directly and use the `from(Source)` method.__
+    
 Pre-configured Sources can also be used directly with the `from(...)` method if you wish to set advanced properties on them. Alternatively you can expose your configured Source as a new Format:
 
     public static Format TolerantFIX = new Format() {
@@ -156,7 +166,40 @@ Just as with the `C24.parse(...)` method, you can control the output format and 
 
     String json = C24.write(file).as(JSON).using("UTF-8").toStr();
     
-__The toStr() method requires iO 4.7 or above. In earlier releases you can use to(StringWriter) to marshal your object to a String.__ 
+__The toStr() method requires iO 4.6.10 or above. In earlier releases you can use to(StringWriter) to marshal your object to a String.__ 
+
+#### Going Further
+
+__The MarshalListener interface is available in iO 4.6.10 and above__
+
+Certain Sinks implement the StreamingSink interface which allows a MarshalListener to intercept the marshaling process for types which have the 'Process As Batch' property set to true.
+
+MarshalListeners can be injected into the marshaling process using the `with(MarshalListener)` grammar:
+
+    MarshalListener listener = ...;
+    
+    C24.write(file).with(listener).to(System.out);
+    
+If you attempt to use a MarshalListener on a Sink which doesn't support them, an `UnsupportedOperationException` will be thrown from the `to(...)` method.
+
+MarshalListeners can mutate, remove or add objects to the marshaled output. The MarshalListener below duplicates in the output every CDO it is invoked on:
+
+    MarshalListener listener = new MarshalListener() {
+        
+        @Override
+        public boolean marshal(ComplexDataObject value, StreamingSink sink) throws Exception {
+            
+            // Write out value
+            sink.marshal(value);
+            // ... and write it out again
+            sink.marshal(value);
+            
+            // Tell the Sink that we've marshaled value so it doesn't need to.
+            return true;
+         
+        }
+    };
+
 
 ## SDOs
 
@@ -172,7 +215,7 @@ Marshaing SDOs is also the same as for CDOs and again the full syntax shown abov
 
     String json = C24.write(file).as(JSON).using("UTF-8").toStr();
     
-__The toStr() method requires iO 4.7 or above. In earlier releases you can use to(StringWriter) to marshal your object to a String__ 
+__The toStr() method requires iO 4.6.10 or above. In earlier releases you can use to(StringWriter) to marshal your object to a String__ 
     
 Validation and transformation are not supported directly by SDOs so if you wish to use these in your process flow you should parse the CDO first and convert to an SDO when you need a compact, read-only version of your message.
 

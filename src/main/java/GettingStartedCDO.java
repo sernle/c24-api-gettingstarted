@@ -3,10 +3,14 @@ import java.io.IOException;
 
 import biz.c24.io.api.C24;
 import static biz.c24.io.api.C24.Format.*;
+import biz.c24.io.api.data.ComplexDataObject;
 import biz.c24.io.api.data.ValidationEvent;
 import biz.c24.io.api.data.ValidationException;
+import biz.c24.io.api.presentation.MarshalListener;
+import biz.c24.io.api.presentation.StreamingSink;
 import biz.c24.io.gettingstarted.contact.ContactDetailsFile;
 import biz.c24.io.gettingstarted.customer.Customer;
+import biz.c24.io.gettingstarted.customer.CustomerClass;
 import biz.c24.io.gettingstarted.customer.CustomersFile;
 import biz.c24.io.gettingstarted.customer.Address;
 import biz.c24.io.gettingstarted.transform.GenerateContactListTransform;
@@ -93,6 +97,48 @@ public class GettingStartedCDO {
  
         // The input and output arrays allow you to pass (and receive) more CDOs
         
+        // As well as the usual mechanisms provided within the Studio to control how your types are marshaled, those types which have the
+        // 'Process As Batch' property set to true can be intercepted by a MarshaListener
+        
+        // Normally you'd set this property in your model via the Studio
+        ((CustomerClass)CustomerClass.getInstance()).setProcessAsBatch(true);
+        
+        // This MarshalListener will look at each Customer's telephone number and, if it starts with +44 will change it to 0 
+        // (to make it a UK-specific number) before marshaling.
+        // Note that the approach here modifies the source Customer; if we only wanted the marshaled version to be affected we'd
+        // need to clone the Customer first and marshal the modified clone.
+        
+        MarshalListener listener = new MarshalListener() {
+            
+            @Override
+            public boolean marshal(ComplexDataObject value, StreamingSink sink) throws Exception {
+                if(value instanceof Customer) {
+                    Customer customer = (Customer) value;
+                    String telephoneNumber = customer.getTelephoneNumber();
+                    
+                    if(telephoneNumber.startsWith("+44")) {
+                        customer.setTelephoneNumber(telephoneNumber.replaceFirst("\\+44[ ]*", "0"));
+                    }
+                    
+                    sink.marshal(customer);
+                    
+                    // We've marshalled value - signal that the Sink doesn't need to handle it
+                    return true;
+                } else {
+                    
+                    // Hand back processing of value to the Sink
+                    return false;
+                }
+            }
+        };
+        
+        // Now write out the file again, but this time wiring in the MarshalListener
+        
+        C24.write(file).with(listener).to(System.out);
+        
+        // The MarshalListener is not restricted to simply modifying existing CDOs. You can pass any CDOs to the StreamingSink's marshal method
+        // hence for example you could read in additional objects from an external store and inject them into the marshaling process.
+  
     }
 
 }
