@@ -5,12 +5,12 @@
 
     <groupId>c24-io-samples</groupId>
     <artifactId>c24-api-gettingstarted</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
 
     <properties>
-        <c24.io.api.version>4.6.10</c24.io.api.version>
-        <c24.io.studio.version>4.6.2</c24.io.studio.version>
+        <c24.io.api.version>4.7.0</c24.io.api.version>
+        <c24.io.studio.version>4.7.0</c24.io.studio.version>
     </properties>
 
     <repositories>
@@ -149,6 +149,114 @@
                 </plugins>
             </build>
         </profile>
+
+        <!-- Java 8 Extensions-->
+        <profile>
+        <id>java8</id>
+            <dependencies>
+                <dependency>
+                    <groupId>biz.c24.io</groupId>
+                    <artifactId>c24-io-api-java8</artifactId>
+                    <version>${c24.io.api.version}</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>biz.c24.io.maven</groupId>
+                        <artifactId>c24-maven-plugin</artifactId>
+                        <version>4.7.0-SNAPSHOT</version>
+                        <executions>
+                            <execution>
+                                <id>c24-model-deploy</id>
+                                <phase>generate-sources</phase>
+                                <configuration>
+                                    <session>
+                                        <deploy>
+                                            <generateMainMethods>false</generateMainMethods>
+                                            <toDir>target/generated-sources/src/main/java</toDir>
+                                            <deployEnvironment>false</deployEnvironment>
+                                            <deployAsCDO>true</deployAsCDO>
+                                            <deployAsSDO>true</deployAsSDO>
+                                            <javaVersion>JDK_8</javaVersion>
+                                            <fileSet>
+                                                <directory>${basedir}/src/main/C24</directory>
+                                                <includes>
+                                                    <name>purchase-order.dod</name>
+                                                </includes>
+                                            </fileSet>
+                                        </deploy>
+                                    </session>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>biz.c24.io</groupId>
+                                <artifactId>c24-io-api</artifactId>
+                                <version>${c24.io.api.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>biz.c24.io</groupId>
+                                <artifactId>c24-io-studio</artifactId>
+                                <version>${c24.io.studio.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>biz.c24.io</groupId>
+                                <artifactId>c24-io-api-java8</artifactId>
+                                <version>${c24.io.api.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.2</version>
+                        <configuration>
+                            <source>1.8</source>
+                            <target>1.8</target>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals><goal>add-source</goal></goals>
+                                <configuration>
+                                    <sources>
+                                        <source>src/main/java8</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.2</version>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                                <configuration>
+                                    <sourceRoot>src/main/java8</sourceRoot>
+                                    <mainClass>WorkingWithJava8Extensions</mainClass>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+
     </profiles>
 
 </project>

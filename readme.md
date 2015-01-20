@@ -5,7 +5,7 @@ Now that you've generated your models and Java classes from the iO Studio it's t
 
 All the code and samples used in this section can be downloaded from https://github.com/C24-Technologies/c24-api-gettingstarted
 
-This document also introduces some of the new features included in the upcoming v4.7 of C24-iO. Please contact C24 if you have would like a demonstration of this functionality.
+This document also introduces some of the new features included in the new v4.7 release of C24-iO.
 
 ## Getting Started
 
@@ -265,3 +265,32 @@ Alternatively there is a monadic API for building a process out of predefined co
       new File("/Customers.xml") -> parser -> validate -> transform -> writer -> System.out
 
 As with CDOs, the `parse(...)` and `write(...)` methods both work with SDOs (and in the case of the former return an SDO). Validation and transformation are not supported on SDOs and, although the API could transparently convert between CDO & SDO, these features are only supported directly via the CDO-based API so users can ensure they're creating the most efficient processing pipeline.
+
+## Java 8 Deploy Option
+_The Deploy Java 8 code option is available with io v4.7.0 and above._
+
+To build the samples with the java 8 option, first ensure your selected Java version is 1.8 then execute the following maven profile:
+
+    mvn clean install -Pjava8
+
+To include it in your maven project add the following dependency:
+
+    <dependency>
+        <groupId>biz.c24.io</groupId>
+        <artifactId>c24-io-api-java8</artifactId>
+        <version>${c24.io.api.version}</version>
+    </dependency>
+
+To generate code with the Java 8 features you can select the JDK_8 option in the project profile.
+Alternatively if you use the C24 maven deploy task set the following property:
+
+    <javaVersion>JDK_8</javaVersion>
+
+
+Deploying C24 code with the Java 8 option selected will result in the following behaviours:
+
+1. ISO8601 Date and Time types will be mapped to java.time Date and Time types
+2. Elements that have cardinality of more than 1 will be mapped to type safe collections
+3. Properties that are backed by a C24 Enumeration will have a corresponding getter and setter that works with a generated java enum
+
+See src/main/java8/WorkingWithJava8Extensions.java class for a full working example
