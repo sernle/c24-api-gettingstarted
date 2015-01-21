@@ -73,6 +73,7 @@ public class WorkingWithJava8Extensions {
         // ISO8601 Year -> java.time.Year
         // ISO8601 MonthDay -> java.time.MonthDay
         // ISO8601 YearMonth -> java.time.YearMonth
+        // GenericDate -> java.time.LocalDateTime
 
         //In the standard C24 deployment collections are represented as arrays
         // e.g. LineItem[] lineItems
