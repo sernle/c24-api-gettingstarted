@@ -3,6 +3,7 @@ package scala;
 import biz.c24.io.api.C24
 import biz.c24.io.api.C24Scala._
 import biz.c24.io.api.data.ValidationManager
+import scala.collection.JavaConversions._
 
 import biz.c24.io.gettingstarted.customer.sdo.CustomersFile
 

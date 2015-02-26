@@ -10,7 +10,7 @@ import biz.c24.io.api.presentation.MarshalListener;
 import biz.c24.io.api.presentation.StreamingSink;
 import biz.c24.io.gettingstarted.contact.ContactDetailsFile;
 import biz.c24.io.gettingstarted.customer.Customer;
-import biz.c24.io.gettingstarted.customer.CustomerClass;
+import biz.c24.io.gettingstarted.customer.CustomerCls;
 import biz.c24.io.gettingstarted.customer.CustomersFile;
 import biz.c24.io.gettingstarted.customer.Address;
 import biz.c24.io.gettingstarted.transform.GenerateContactListTransform;
@@ -101,7 +101,7 @@ public class GettingStartedCDO {
         // 'Process As Batch' property set to true can be intercepted by a MarshaListener
         
         // Normally you'd set this property in your model via the Studio
-        ((CustomerClass)CustomerClass.getInstance()).setProcessAsBatch(true);
+        ((CustomerCls)CustomerCls.getInstance()).setProcessAsBatch(true);
         
         // This MarshalListener will look at each Customer's telephone number and, if it starts with +44 will change it to 0 
         // (to make it a UK-specific number) before marshaling.

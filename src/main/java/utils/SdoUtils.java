@@ -10,7 +10,7 @@ import biz.c24.io.api.data.SimpleDataObject;
 public class SdoUtils {
     
     public static long sizeOf(SimpleDataObject sdo) {
-        return sdo.getSdoData().limit() - sdo.getBufferOffset();
+        return sdo.getSdoData().length - sdo.getBufferOffset();
     }
     
     public static long sizeOf(File file) throws IOException {
@@ -36,7 +36,7 @@ public class SdoUtils {
 
     public static void visualise(SimpleDataObject sdo, PrintStream stream) {
 
-        byte[] bytes = sdo.getSdoData().array();
+        byte[] bytes = sdo.getSdoData();
         for(int i=0; i < bytes.length; i++) {
             if(i % 80 == 0) {
                 stream.println();

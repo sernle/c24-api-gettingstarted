@@ -50,7 +50,7 @@ public class GettingStartedSDO {
         
         // And we can still access nested objects, exactly the same as for a CDO:
         
-        Address address = sdoFile.getCustomer()[0].getAddress();
+        Address address = sdoFile.getCustomer(0).getAddress();
         for(String line : address.getAddressLine()) {
             System.out.println(line);
         }

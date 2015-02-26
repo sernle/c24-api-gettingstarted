@@ -37,6 +37,13 @@ The second import is optional but makes your code slightly cleaner where you're 
 You also need to import your model classes. For the code sample in the referenced project we need:
 
     import biz.c24.io.gettingstarted.customer.CustomersFile;
+
+You would usually generate the jars using studio and include them in your build process.
+For this demo we will use the C24 maven plugin to create the classes dynamically from the data models
+
+To do this you need to execute the maven command  - mvn clean install
+
+This will generate java classes in target/generated-sources
     
 ### Parsing
 
@@ -230,7 +237,7 @@ Converting between CDOs and SDOs is simple:
 ## Scala
 __The C24-iO Scala Library is available with iO v4.7.0 and above.__ 
 
-To build the Scala examples in the reference project using Maven, add -Pscala to the build line.
+To build the Scala examples in the reference project using Maven, add -Pdefault,scala to the build line.
 
 An additional jar (c24-io-api-scala) further enhances the C24 API to provide a more idiomatic Scala-based interface. In this case your Maven project requires the following dependency:
 
