@@ -22,7 +22,7 @@ object GettingStartedSDO {
      
        // Parsing & marshaling are identical to that with CDOs in Scala except that you pass in the SDO version of the class
  
-       var customerFile = C24.parse(classOf[CustomersFile]) as C24.Format.XML from new File("/Customers.xml")
+       var customerFile = C24.parse(classOf[CustomersFile]) as C24.Format.XML from new File("src/main/resources/Customers.xml")
         
        for(customer <- customerFile.getCustomer()) {
            println(customer.getCustomerNumber());
@@ -36,13 +36,13 @@ object GettingStartedSDO {
       var parser = C24.parse(classOf[CustomersFile]) as C24.Format.XML
       var writer = C24.write() as C24.Format.JSON
       
-      new File("/Customers.xml") -> parser -> writer -> System.out
+      new File("src/main/resources/Customers.xml") -> parser -> writer -> System.out
        
        
        // As SDOs can't be directly validated and transformed (or modified) you might want to parse the CDO first and 
        // convert it to an SDO when you're ready
        
-       var cdo = C24.parse(classOf[biz.c24.io.gettingstarted.customer.CustomersFile]) as C24.Format.XML from new File("/Customers.xml")
+       var cdo = C24.parse(classOf[biz.c24.io.gettingstarted.customer.CustomersFile]) as C24.Format.XML from new File("src/main/resources/Customers.xml")
        // validate, transform, edit, ...
        customerFile = C24.toSdo(cdo)
        

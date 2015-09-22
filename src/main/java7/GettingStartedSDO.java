@@ -24,7 +24,7 @@ public class GettingStartedSDO {
         // In most cases, we start out the same way as for CDOs
         // First we parse our message into the corresponding CDO:
         
-        File file = new File("/Customers.xml");
+        File file = new File("src/main/resources/Customers.xml");
         
         biz.c24.io.gettingstarted.customer.CustomersFile cdoFile = C24.parse(biz.c24.io.gettingstarted.customer.CustomersFile.class).from(file);
         

@@ -35,7 +35,7 @@ public class WorkingWithJava8Extensions {
     public static void main(String[] args) throws IOException, ValidationException {
 
         //First parse the xml data and create a CDO model that we can work with
-        PurchaseorderLocal purchaseOrder = C24.parse(PurchaseorderDocumentRoot.class).from(new File("/purchase-order.xml")).getPurchaseorder();
+        PurchaseorderLocal purchaseOrder = C24.parse(PurchaseorderDocumentRoot.class).from(new File("src/main/resources/purchase-order.xml")).getPurchaseorder();
 
         //Validate everything is correct
         C24.validate(purchaseOrder);

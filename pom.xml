@@ -9,8 +9,8 @@
 
 
     <properties>
-        <c24.io.api.version>4.7.2</c24.io.api.version>
-        <c24.io.studio.version>4.7.4</c24.io.studio.version>
+        <c24.io.api.version>4.7.9</c24.io.api.version>
+        <c24.io.studio.version>4.7.7</c24.io.studio.version>
     </properties>
 
     <repositories>

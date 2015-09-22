@@ -21,7 +21,7 @@ object GettingStartedCDO {
       
         // All of the standard C24 API is obviously usable in Scala, e.g.:
           
-        var customerFile = C24.parse(classOf[CustomersFile]) as C24.Format.XML from new File("/Customers.xml")
+        var customerFile = C24.parse(classOf[CustomersFile]) as C24.Format.XML from new File("src/main/resources/Customers.xml")
         
         C24.validate(customerFile)
         
@@ -38,7 +38,7 @@ object GettingStartedCDO {
         // The first is that parsing, validation, transformation and marshaling can be fluently chained together:
       
         (
-            C24.parse(classOf[CustomersFile]) as C24.Format.XML from new File("/Customers.xml") 
+            C24.parse(classOf[CustomersFile]) as C24.Format.XML from new File("src/main/resources/Customers.xml")
             ensureValid()
             transformUsing new GenerateContactListTransform()
             write() as C24.Format.JSON to System.out
@@ -48,7 +48,7 @@ object GettingStartedCDO {
         // much or as little processing together as you need.
         
         customerFile = (
-                        C24.parse(classOf[CustomersFile]) as C24.Format.XML from new File("/Customers.xml") 
+                        C24.parse(classOf[CustomersFile]) as C24.Format.XML from new File("src/main/resources/Customers.xml")
                         ensureValid()
                        )
 
@@ -61,6 +61,6 @@ object GettingStartedCDO {
         var transform = new GenerateContactListTransform
         var writer = C24.write() as C24.Format.JSON
       
-        new File("/Customers.xml") -> parser -> validate -> transform -> writer -> System.out
+        new File("src/main/resources/Customers.xml") -> parser -> validate -> transform -> writer -> System.out
     }
 }

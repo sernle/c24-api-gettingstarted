@@ -24,7 +24,7 @@ public class GettingStartedCDO {
         // In our case it's CustomersFile.class
         // We want to read it in, from a file, where it is stored in its default format:
         
-        CustomersFile file = C24.parse(CustomersFile.class).from(new File("/Customers.xml"));
+        CustomersFile file = C24.parse(CustomersFile.class).from(new File("src/main/resources/Customers.xml"));
         
         // We could have overriden the default format by using the as(Format) method or
         // default encoding by calling the using("Character set") method
