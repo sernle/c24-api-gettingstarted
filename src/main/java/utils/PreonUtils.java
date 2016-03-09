@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import biz.c24.io.api.data.SimpleDataObject;
+import biz.c24.io.api.data.preon.PreonDataObject;
 
-public class SdoUtils {
+public class PreonUtils {
     
-    public static long sizeOf(SimpleDataObject sdo) {
-        return sdo.getSdoData().length - sdo.getBufferOffset();
+    public static long sizeOf(PreonDataObject preon) {
+        return preon.getPreonData().length - preon.getBufferOffset();
     }
     
     public static long sizeOf(File file) throws IOException {
@@ -21,10 +21,10 @@ public class SdoUtils {
             String path = file.getCanonicalPath();
             if(!path.matches("[\\.]*")) {
                 boolean isAbsolute = file.isAbsolute();
-                InputStream stream = SdoUtils.class.getResourceAsStream(isAbsolute? path : "/" + path);
+                InputStream stream = PreonUtils.class.getResourceAsStream(isAbsolute? path : "/" + path);
                 if(stream == null && !isAbsolute) {
                     // See if they really did mean to find it beneath biz/c24/io/api in the classpath
-                    stream = SdoUtils.class.getResourceAsStream(path);
+                    stream = PreonUtils.class.getResourceAsStream(path);
                 }
                 if(stream != null) {
                     length = stream.available();
@@ -34,9 +34,9 @@ public class SdoUtils {
         return length;
     }
 
-    public static void visualise(SimpleDataObject sdo, PrintStream stream) {
+    public static void visualise(PreonDataObject preon, PrintStream stream) {
 
-        byte[] bytes = sdo.getSdoData();
+        byte[] bytes = preon.getPreonData();
         for(int i=0; i < bytes.length; i++) {
             if(i % 80 == 0) {
                 stream.println();

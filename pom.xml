@@ -9,8 +9,9 @@
 
 
     <properties>
-        <c24.io.api.version>4.7.9</c24.io.api.version>
-        <c24.io.studio.version>4.7.7</c24.io.studio.version>
+        <c24.io.api.version>4.8.0</c24.io.api.version>
+        <c24.io.studio.version>4.8.0</c24.io.studio.version>
+        <c24.io.maven.version>4.8.0</c24.io.maven.version>
     </properties>
 
     <repositories>
@@ -75,22 +76,7 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
     <profiles>
-
         <profile>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -101,9 +87,13 @@
                 <dependency>
                     <groupId>biz.c24.io</groupId>
                     <artifactId>gettingstarted</artifactId>
-                    <version>1.0.0</version>
+                    <version>${c24.io.studio.version}</version>
                 </dependency>
             </dependencies>
+            <properties>
+                <deploy.vesion>JDK_6</deploy.vesion>
+            </properties>
+            
             <build>
                 <plugins>
                     <plugin>
@@ -111,8 +101,8 @@
                         <artifactId>maven-compiler-plugin</artifactId>
                         <version>3.2</version>
                         <configuration>
-                            <source>1.7</source>
-                            <target>1.7</target>
+                            <source>1.6</source>
+                            <target>1.6</target>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -125,7 +115,7 @@
                                 <goals><goal>add-source</goal></goals>
                                 <configuration>
                                     <sources>
-                                        <source>src/main/java7</source>
+                                        <source>src/main/java6</source>
                                     </sources>
                                 </configuration>
                             </execution>
@@ -142,7 +132,7 @@
                                     <goal>java</goal>
                                 </goals>
                                 <configuration>
-                                    <sourceRoot>src/main/java7</sourceRoot>
+                                    <sourceRoot>src/main/java6</sourceRoot>
                                     <mainClass>GettingStartedCDO</mainClass>
                                 </configuration>
                             </execution>
@@ -165,7 +155,7 @@
                 <dependency>
                     <groupId>biz.c24.io</groupId>
                     <artifactId>gettingstarted</artifactId>
-                    <version>1.0.0</version>
+                    <version>${c24.io.studio.version}</version>
                 </dependency>
             </dependencies>
             <build>
@@ -212,8 +202,8 @@
                                     <mainClass>scala.GettingStartedCDO</mainClass>
                                 </launcher>
                                 <launcher>
-                                    <id>sdo</id>
-                                    <mainClass>scala.GettingStartedSDO</mainClass>
+                                    <id>preon</id>
+                                    <mainClass>scala.GettingStartedPreon</mainClass>
                                 </launcher>
                             </launchers>
                         </configuration>
@@ -234,9 +224,12 @@
                 <dependency>
                     <groupId>biz.c24.io</groupId>
                     <artifactId>gettingstarted-java8</artifactId>
-                    <version>1.0.0</version>
+                    <version>${c24.io.studio.version}</version>
                 </dependency>
             </dependencies>
+            <properties>
+                <deploy.vesion>JDK_8</deploy.vesion>
+            </properties>
 
             <build>
                 <plugins>
@@ -285,6 +278,62 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+        <!--  Deploys the models and tfsd, as opposed to using the pre-built jars ones -->
+        <id>deploy</id>
+
+            <build>
+                <plugins>
+                                    <plugin>
+                        <groupId>biz.c24.io.maven</groupId>
+                        <artifactId>c24-maven-plugin</artifactId>
+                        <version>${c24.io.maven.version}</version>
+                        <executions>
+                            <execution>
+                                <id>c24-model-deploy</id>
+                                <phase>generate-sources</phase>
+                                <configuration>
+                                    <session>
+                                        <deploy>
+                                            <generateMainMethods>false</generateMainMethods>
+                                            <toDir>target/generated-sources/src/main/java</toDir>
+                                            <deployEnvironment>false</deployEnvironment>
+                                            <deployAsCDO>true</deployAsCDO>
+                                            <deployAsSDO>true</deployAsSDO>
+                                            <javaVersion>${deploy.version}</javaVersion>
+                                            <fileSet>
+                                                <directory>${basedir}/src/main/C24</directory>
+                                                <includes>
+                                                    <name>GenerateContactList.tfd</name>
+                                                    <name>purchase-order.dod</name>
+                                                </includes>
+                                            </fileSet>
+                                            <namespace uri="http://www.c24.biz/io/GettingStarted/Transform" package="com.test"/>
+                                        </deploy>
+                                    </session>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>biz.c24.io</groupId>
+                                <artifactId>c24-io-api</artifactId>
+                                <version>${c24.io.api.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>biz.c24.io</groupId>
+                                <artifactId>c24-io-studio</artifactId>
+                                <version>${c24.io.studio.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                    </plugins>
+                    </build>
+                    </profile>
+        
 
     </profiles>
 

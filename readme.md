@@ -5,8 +5,6 @@ Now that you've generated your models and Java classes from the iO Studio it's t
 
 All the code and samples used in this section can be downloaded from https://github.com/C24-Technologies/c24-api-gettingstarted
 
-This document also introduces some of the new features included in the new v4.7 release of C24-iO.
-
 ## Getting Started
 
 The Runtime APIs are included in the c24-io-api jar. You can either copy it (and its dependencies) from your iO Studio installation or use a dependency manager - for Maven the relevant sections are:
@@ -208,31 +206,31 @@ MarshalListeners can mutate, remove or add objects to the marshaled output. The 
     };
 
 
-## SDOs
+## Preons
 
-Parsing directly to SDOs works in exactly the same way as parsing CDOs[^1]. All of the syntax shown in Parsing above works identically for SDOs - it's simply a case of passing the SDO class in to the `parse(...)` call:
+Parsing directly to Preons works in exactly the same way as parsing CDOs[^1]. All of the syntax shown in Parsing above works identically for Preons - it's simply a case of passing the Preon class in to the `parse(...)` call:
 
-    import biz.c24.io.gettingstarted.customer.sdo.CustomersFile;
+    import biz.c24.io.gettingstarted.customer.preon.CustomersFile;
 
     CustomersFile file = C24.parse(CustomersFile.class).from(new File("/customers.xml"));
 
 [^1]: This is true for most types, however there are bespoke methods for custom binary protocols such as those used by the telco standards.
 
-Marshaing SDOs is also the same as for CDOs and again the full syntax shown above is valid:
+Marshaing Preons is also the same as for CDOs and again the full syntax shown above is valid:
 
     String json = C24.write(file).as(JSON).using("UTF-8").toStr();
     
 __The toStr() method requires iO 4.6.10 or above. In earlier releases you can use to(StringWriter) to marshal your object to a String__ 
     
-Validation and transformation are not supported directly by SDOs so if you wish to use these in your process flow you should parse the CDO first and convert to an SDO when you need a compact, read-only version of your message.
+Validation and transformation are not supported directly by Preons so if you wish to use these in your process flow you should parse the CDO first and convert to an Preon when you need a compact, read-only version of your message.
 
-Converting between CDOs and SDOs is simple:
+Converting between CDOs and Preons is simple:
 
     biz.c24.io.gettingstarted.customer.CustomersFile cdoFile = ...;
     
-    biz.c24.io.gettingstarted.customer.sdo.CustomersFile sdoFile = C24.toSdo(cdoFile);
+    biz.c24.io.gettingstarted.customer.preon.CustomersFile preonFile = cdoFile.toPreon();
     
-    cdoFile = C24.toCdo(sdoFile);
+    cdoFile = CustomersFile.toCdo(preonFile);
 
 ## Scala
 __The C24-iO Scala Library is available with iO v4.7.0 and above.__ 
@@ -260,7 +258,7 @@ The fluent API is enhanced to allow parsing, validation, transformation and mars
         write() as JSON to System.out
     )
 
-The use of implicit conversion means that at the end of each stage (line) above, the result is a CDO (unless you're parsing SDOs - see later) so you can use as much or as little of the API as you need.
+The use of implicit conversion means that at the end of each stage (line) above, the result is a CDO (unless you're parsing Preons - see later) so you can use as much or as little of the API as you need.
 
 Alternatively there is a monadic API for building a process out of predefined components:
 
@@ -271,7 +269,7 @@ Alternatively there is a monadic API for building a process out of predefined co
       
       new File("/Customers.xml") -> parser -> validate -> transform -> writer -> System.out
 
-As with CDOs, the `parse(...)` and `write(...)` methods both work with SDOs (and in the case of the former return an SDO). Validation and transformation are not supported on SDOs and, although the API could transparently convert between CDO & SDO, these features are only supported directly via the CDO-based API so users can ensure they're creating the most efficient processing pipeline.
+As with CDOs, the `parse(...)` and `write(...)` methods both work with Preons (and in the case of the former return an Preon). Validation and transformation are not supported on Preons and, although the API could transparently convert between CDO & Preon, these features are only supported directly via the CDO-based API so users can ensure they're creating the most efficient processing pipeline.
 
 ## Java 8 Deploy Option
 _The Deploy Java 8 code option is available with io v4.7.0 and above._
