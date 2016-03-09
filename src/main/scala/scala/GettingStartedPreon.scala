@@ -5,22 +5,22 @@ import biz.c24.io.api.C24Scala._
 import biz.c24.io.api.data.ValidationManager
 import scala.collection.JavaConversions._
 
-import biz.c24.io.gettingstarted.customer.sdo.CustomersFile
+import biz.c24.io.gettingstarted.customer.preon.CustomersFile
 
 import java.io.File
 
 
 /**
  * This example builds on the Scala GettingStartedCDO and the
- * Java GettingStartedSDO examples; please review them first.
+ * Java GettingStartedPreon examples; please review them first.
  * 
- * SDOs are a licensed feature of the C24-iO Enterprise Edition.
+ * Preons are a licensed feature of the C24-iO Enterprise Edition.
  */
-object GettingStartedSDO {
+object GettingStartedPreon {
 
    def main(args: Array[String]) {
      
-       // Parsing & marshaling are identical to that with CDOs in Scala except that you pass in the SDO version of the class
+       // Parsing & marshaling are identical to that with CDOs in Scala except that you pass in the Preon version of the class
  
        var customerFile = C24.parse(classOf[CustomersFile]) as C24.Format.XML from new File("src/main/resources/Customers.xml")
         
@@ -39,12 +39,12 @@ object GettingStartedSDO {
       new File("src/main/resources/Customers.xml") -> parser -> writer -> System.out
        
        
-       // As SDOs can't be directly validated and transformed (or modified) you might want to parse the CDO first and 
-       // convert it to an SDO when you're ready
+       // As Preons can't be directly validated and transformed (or modified) you might want to parse the CDO first and 
+       // convert it to a Preon when you're ready
        
        var cdo = C24.parse(classOf[biz.c24.io.gettingstarted.customer.CustomersFile]) as C24.Format.XML from new File("src/main/resources/Customers.xml")
        // validate, transform, edit, ...
-       customerFile = C24.toSdo(cdo)
+       customerFile = cdo.toPreon()
        
        // Of course, you can go back to a CDO at any time
        
