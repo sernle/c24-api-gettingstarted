@@ -9,9 +9,10 @@
 
 
     <properties>
-        <c24.io.api.version>4.8.0</c24.io.api.version>
-        <c24.io.studio.version>4.8.0</c24.io.studio.version>
-        <c24.io.maven.version>4.8.0</c24.io.maven.version>
+        <c24.io.api.version>4.9.0</c24.io.api.version>
+        <c24.io.studio.version>4.9.0</c24.io.studio.version>
+        <c24.io.maven.version>4.8.1</c24.io.maven.version>
+        <c24.getting.started.version>4.9.0</c24.getting.started.version>
     </properties>
 
     <repositories>
@@ -80,7 +81,7 @@
                 <dependency>
                     <groupId>biz.c24.io</groupId>
                     <artifactId>gettingstarted</artifactId>
-                    <version>${c24.io.studio.version}</version>
+                    <version>${c24.getting.started.version}</version>
                 </dependency>
             </dependencies>
             <properties>
@@ -150,7 +151,7 @@
                 <dependency>
                     <groupId>biz.c24.io</groupId>
                     <artifactId>gettingstarted</artifactId>
-                    <version>${c24.io.studio.version}</version>
+                    <version>${c24.getting.started.version}</version>
                 </dependency>
             </dependencies>
             <build>
@@ -219,7 +220,7 @@
                 <dependency>
                     <groupId>biz.c24.io</groupId>
                     <artifactId>gettingstarted-java8</artifactId>
-                    <version>${c24.io.studio.version}</version>
+                    <version>${c24.getting.started.version}</version>
                 </dependency>
             </dependencies>
             <properties>

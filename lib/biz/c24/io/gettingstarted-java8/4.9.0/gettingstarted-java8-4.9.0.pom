@@ -1,0 +1,132 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>biz.c24.io</groupId>
+	<artifactId>gettingstarted-java8</artifactId>
+	<name>C24 iO Code Generator</name>
+	<packaging>jar</packaging>
+	<description>Generates Java classes from models and tranforms</description>
+	<version>4.9.0</version>
+
+	<properties>
+
+        <c24.io.api.version>4.9.0</c24.io.api.version>
+        <c24.io.studio.version>4.9.0</c24.io.studio.version>
+        <c24.io.maven.version>4.8.1</c24.io.maven.version>
+        <logback.version>1.1.2</logback.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.build.timestamp.format>dd MMM yyyy HH:mm</maven.build.timestamp.format>
+
+	</properties>
+
+
+	<repositories>
+		<repository>
+			<id>c24-nexus</id>
+			<name>C24 Nexus</name>
+			<url>http://repo.c24io.net/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>c24-nexus</id>
+			<name>C24 Nexus</name>
+			<url>http://repo.c24io.net/nexus/content/groups/public</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>biz.c24.io</groupId>
+            <artifactId>c24-io-api</artifactId>
+            <!-- you can choose your own desired version here -->
+            <version>${c24.io.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>biz.c24.io</groupId>
+            <artifactId>c24-io-studio</artifactId>
+            <!-- you can choose your own desired version here -->
+            <version>${c24.io.studio.version}</version>
+        </dependency>
+
+        <!-- if deploying with Java 8 option this will be needed-->
+        <dependency>
+            <groupId>biz.c24.io</groupId>
+            <artifactId>c24-io-api-java8</artifactId>
+            <version>${c24.io.api.version}</version>
+        </dependency>
+    </dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>biz.c24.io.maven</groupId>
+				<artifactId>c24-maven-plugin</artifactId>
+				<version>${c24.io.maven.version}</version>
+				<executions>
+					<execution>
+						<id>c24-model-deploy</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<session>
+								<deploy>
+									<generateMainMethods>false</generateMainMethods>
+									<toDir>target/generated-sources/src/main/java</toDir>
+									<deployEnvironment>false</deployEnvironment>
+                                    <deployReferencedFiles>true</deployReferencedFiles>
+                                    <!-- By default CDO's will be generated but you can optionally turn this off if you wanted SDO classes only-->
+                                    <deployAsCDO>true</deployAsCDO>
+                                    <deployAsPREON>false</deployAsPREON>
+
+                                    <!-- The default option-->
+                                    <javaVersion>JDK_8</javaVersion>
+                                    <!-- Generate code with java 8 options in which case the extra dependency on io-api-java8 will  be needed-->
+                                    <!--<javaVersion>JDK_8</javaVersion>-->
+									<fileSet>
+										<directory>${basedir}/src/main/c24</directory>
+                                        <includes>
+                                            <name>*.tfd</name>
+                                            <name>*.dod</name>
+                                        </includes>
+									</fileSet>
+								</deploy>
+							</session>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>biz.c24.io</groupId>
+						<artifactId>c24-io-api</artifactId>
+						<!-- you can choose your own desired version here -->
+						<version>${c24.io.api.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>biz.c24.io</groupId>
+						<artifactId>c24-io-studio</artifactId>
+						<!-- you can choose your own desired version here -->
+						<version>${c24.io.studio.version}</version>
+					</dependency>
+
+                    <!-- if deploying with Java 8 option this will be needed-->
+                    <dependency>
+                        <groupId>biz.c24.io</groupId>
+                        <artifactId>c24-io-api-java8</artifactId>
+                        <version>${c24.io.api.version}</version>
+                    </dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+
